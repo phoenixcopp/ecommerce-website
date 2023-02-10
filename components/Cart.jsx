@@ -32,7 +32,7 @@ const Cart = () => {
   }
 
   return (
-    <div className='cart-wrapper' re={cartRef}>
+    <div className='cart-wrapper' ref={cartRef}>
       <div className='cart-container'>
         <button type='button' className='cart-heading' onClick={() => setShowCart(false)}>
             <AiOutlineLeft/>
@@ -71,7 +71,7 @@ const Cart = () => {
                     <span className="minus" onClick={() => toggleCartItemQuantity(item._id, 'dec') }>
                     <AiOutlineMinus />
                     </span>
-                    <span className="num" onClick="">{item.quantity}</span>
+                    <span className="num">{item.quantity}</span>
                     <span className="plus" onClick={() => toggleCartItemQuantity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>

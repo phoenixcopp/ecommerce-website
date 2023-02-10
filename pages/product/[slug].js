@@ -7,10 +7,16 @@ import { useStateContext } from '../../context/StateContext';
 
 
 const ProductDetails = ({ product, products }) => {
-  
+
     const {image, name, details, price } = product;
     const [index, setIndex] = useState(0);
-    const {decQty, incQty, qty, onAdd} = useStateContext();
+    const {decQty, incQty, qty, onAdd, setShowCart} = useStateContext();
+
+    const handleBuyNow = () => {
+        onAdd(product, qty);
+        setShowCart(true);
+    }
+    
 
     return (
         <div>
@@ -33,31 +39,32 @@ const ProductDetails = ({ product, products }) => {
                 <div className='product-detail-desc'>
                     <h1> {name} </h1>
                     <div className='reviews'>
-                        <div>
+                        <p className='review-counter'>
+                            Reviews (20)
+                        </p>
+                        <div className='stars'>
                             <AiFillStar/>
                             <AiFillStar/>
                             <AiFillStar/>
                             <AiFillStar/>
                             <AiOutlineStar/>
                         </div>
-                        <p>
-                            (20)
-                        </p>
-                        <h4>Details:</h4>
-                        <p>{details}</p>
+                        
+                        <p className='review-counter'>Details:</p>
+                        <p className='details-desc'>{details}</p>
                         <p className='price'>${price}</p>
                     </div>
                     <div className='quantity'>
-                        <h3>Quantity</h3>
+                        <h3>Quantity:</h3>
                         <p className='quantity-desc'>
                             <span className='minus' onClick={decQty}><AiOutlineMinus/></span>
-                            <span className='num' onClick="">{qty}</span>
-                            <span className='plua' onClick={incQty}><AiOutlinePlus/></span>
+                            <span className='num'>{qty}</span>
+                            <span className='plus' onClick={incQty}><AiOutlinePlus/></span>
                         </p>
                     </div>
                     <div className='buttons'>
                         <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>Add to Cart</button>
-                        <button type='button' className='buy-now' onClick="">Buy Now</button>
+                        <button type='button' className='buy-now' onClick={handleBuyNow}>Buy Now</button>
                     </div>
                 </div>    
             </div>
@@ -103,8 +110,6 @@ export const getStaticProps = async ({ params: { slug }}) => {
     
     const product = await client.fetch(query);
     const products = await client.fetch(productsQuery);
-
-        console.log(product);
 
     return {
         props: { products, product }

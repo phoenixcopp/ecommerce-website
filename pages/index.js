@@ -7,8 +7,11 @@ const Home = ({ products, bannerData }) => {
     <>
       <HeroBanner heroBanner={bannerData[0]}/>
       <div className='products-heading'>
-        <h2> Best Selling Product </h2>
-        <p> keyboards of many variations </p>
+        <p className='important-text'>*** IMPORTANT ***</p>
+        <p className='important-text'>This is a mock ecommerce website. The products on this site are fake. To simulate a transaction please the following card information: </p>
+        <p className='important-text'> Number: 4242 4242 4242 4242  Date: 04/24  CVC: 424 </p>
+        <h2> Keyboard Selection </h2>
+        <p> Keyboards of many variations </p>
       </div>
       <div className='products-container'>
         {products?.map(

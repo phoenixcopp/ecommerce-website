@@ -30,7 +30,7 @@ const success = () => {
                 </p>
                 <Link href='/'>
                     <button type='button' width='300px' className='btn'>
-                        CONTINUR SHOPPING
+                        CONTINUE SHOPPING
                     </button>
                 </Link>
             </div>
